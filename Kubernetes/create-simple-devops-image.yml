@@ -4,16 +4,13 @@
 
   tasks:
   - name: create docker image using war file
-    command: docker build -t simple-devops-image:latest .
+    shell: docker build -t mylandmarktech/springapp .
     args:
-      chdir: /opt/k8s-lab
-
-  - name: create tag to image
-    command: docker tag simple-devops-image yankils/simple-devops-image
+      chdir: /home/ansible/build
 
   - name: push image on to dockerhub
-    command: docker push yankils/simple-devops-image
+    shell: docker push mylandmarktech/springapp
 
   - name: remove docker images form ansible server
-    command: docker rmi simple-devops-image:latest yankils/simple-devops-image
+    shell: docker rmi mylandmarktech/springapp:latest 
     ignore_errors: yes
